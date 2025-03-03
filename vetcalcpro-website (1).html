@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCalcPro - Veterinary Calculators</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark mode variables */
+        .dark-mode {
+            --primary-color: #4da8eb;
+            --secondary-color: #2ecc71;
+            --dark-color: #ecf0f1;
+            --light-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main content */
+        main {
+            margin-top: 70px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search section */
+        .search-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--dark-color);
+        }
+
+        /* Categories grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .emergency .category-header {
+            background: var(--danger-color);
+        }
+
+        .anesthetics .category-header {
+            background: var(--warning-color);
+        }
+
+        .category-body {
+            padding: 1.5rem;
+        }
+
+        .calculator-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .calculator-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .calculator-list a {
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .calculator-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Quick access toolbar */
+        .quick-toolbar {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 90;
+        }
+
+        .toolbar-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.5rem;
+        }
+
+        .toolbar-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .toolbar-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            width: 250px;
+            display: none;
+        }
+
+        .toolbar-menu.show {
+            display: block;
+        }
+
+        .toolbar-menu ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .toolbar-menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Calculator modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Form elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Features section */
+        .features-section {
+            margin-top: 3rem;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Settings modal */
+        .settings-modal {
+            max-width: 700px;
+        }
+
+        .settings-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .settings-tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .settings-content {
+            display: none;
+        }
+
+        .settings-content.active {
+            display: block;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-option.active {
+            border-color: var(--dark-color);
+        }
+
+        .blue {
+            background-color: #3498db;
+        }
+
+        .green {
+            background-color: #2ecc71;
+        }
+
+        .purple {
+            background-color: #9b59b6;
+        }
+
+        .red {
+            background-color: #e74c3c;
+        }
+
+        .orange {
+            background-color: #f39c12;
+        }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            margin: 0 1rem;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .toolbar-btn {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/api/placeholder/40/40" alt="VetCalcPro Logo">
+                <h1>VetCalcPro</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Calculators</a></li>
+                <li><a href="#">References</a></li>
+                <li><a href="#">Patients</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search drugs, calculators, or references...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <div class="category-grid">
+                <!-- Emergency Category -->
+                <div class="category-card emergency">
+                    <div class="category-header">
+                        <span>Emergency Drugs</span>
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="drug-item" data-drug="epinephrine">Epinephrine</a></li>
+                            <li><a href="#" class="drug-item" data-drug="atropine">Atropine</a></li>
+                            <li><a href="#" class="drug-item" data-drug="lidocaine">Lidocaine</a></li>
+                            <li><a href="#" class="drug-item" data-drug="naloxone">Naloxone</a></li>
+                            <li><a href="#" class="drug-item" data-drug="flumazenil">Flumazenil</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Anesthetics Category -->
+                <div class="category-card anesthetics">
+                    <div class="category-header">
+                        <span>Anesthetics</span>
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="drug-item" data-drug="propofol">Propofol</a></li>
+                            <li><a href="#" class="drug-item" data-drug="ketamine">Ketamine</a></li>
+                            <li><a href="#" class="drug-item" data-drug="midazolam">Midazolam</a></li>
+                            <li><a href="#" class="drug-item" data-drug="dexmedetomidine">Dexmedetomidine</a></li>
+                            <li><a href="#" class="drug-item" data-drug="isoflurane">Isoflurane</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- CRIs Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>CRIs</span>
+                        <i class="fas fa-pump-medical"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="drug-item" data-drug="fentanyl-cri">Fentanyl CRI</a></li>
+                            <li><a href="#" class="drug-item" data-drug="dopamine-cri">Dopamine CRI</a></li>
+                            <li><a href="#" class="drug-item" data-drug="lidocaine-cri">Lidocaine CRI</a></li>
+                            <li><a href="#" class="drug-item" data-drug="ketamine-cri">Ketamine CRI</a></li>
+                            <li><a href="#" class="drug-item" data-drug="dexmedetomidine-cri">Dexmedetomidine CRI</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Fluids Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Fluids</span>
+                        <i class="fas fa-fill-drip"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="calculator-item" data-calc="maintenance-fluids">Maintenance Fluids</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="shock-dose">Shock Dose</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="dehydration">Dehydration Correction</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="fluid-rate">Fluid Rate Calculator</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="drip-rate">Drip Rate Calculator</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Antibiotics Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Antibiotics</span>
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="drug-item" data-drug="amoxicillin">Amoxicillin</a></li>
+                            <li><a href="#" class="drug-item" data-drug="cefazolin">Cefazolin</a></li>
+                            <li><a href="#" class="drug-item" data-drug="enrofloxacin">Enrofloxacin</a></li>
+                            <li><a href="#" class="drug-item" data-drug="metronidazole">Metronidazole</a></li>
+                            <li><a href="#" class="drug-item" data-drug="doxycycline">Doxycycline</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Tools Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Clinical Tools</span>
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="calculator-item" data-calc="glucose-curve">Blood Glucose Curve</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="chocolate-toxicity">Chocolate Toxicity</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="transfusion">Blood Transfusion</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="grimace-scale">Feline Grimace Scale</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="cushing-tool">Cushing's Diagnostic Tool</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Calculations</h3>
+                    <p>Calculates drug dosages as you type for quick results</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="feature-title">Scan Documents & QR Codes</h3>
+                    <p>Integrated scanning function for quick data input</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3 class="feature-title">Customizable Drug Library</h3>
+                    <p>Add your own drugs to any category</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3 class="feature-title">Patient Management</h3>
+                    <p>Store patient information for quick access</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Access Toolbar -->
+    <div class="quick-toolbar">
+        <div class="toolbar-btn" id="toolbarToggle">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="toolbar-menu" id="toolbarMenu">
+            <ul>
+                <li><a href="#" id="calculatorBtn"><i class="fas fa-calculator"></i> Calculator</a></li>
+                <li><a href="#" id="scanBtn"><i class="fas fa-qrcode"></i> Scan</a></li>
+                <li><a href="#" id="newPatientBtn"><i class="fas fa-user-plus"></i> New Patient</a></li>
+                <li><a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Calculator Modal -->
+    <div class="modal" id="calculatorModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Calculator</h2>
+            <div class="calculator-pad" style="margin-top: 1.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <input type="text" class="form-control" id="calculatorDisplay" style="grid-column: span 4; text-align: right; font-size: 1.5rem; margin-bottom: 10px;">
+                    <button class="btn" style="background: #e74c3c;">C</button>
+                    <button class="btn">←</button>
+                    <button class="btn">%</button>
+                    <button class="btn">÷</button>
+                    <button class="btn">7</button>
+                    <button class="btn">8</button>
+                    <button class="btn">9</button>
+                    <button class="btn">×</button>
+                    <button class="btn">4</button>
+                    <button class="btn">5</button>
+                    <button class="btn">6</button>
+                    <button class="btn">-</button>
+                    <button class="btn">1</button>
+                    <button class="btn">2</button>
+                    <button class="btn">3</button>
+                    <button class="btn">+</button>
+                    <button class="btn" style="grid-column: span 2;">0</button>
+                    <button class="btn">.</button>
+                    <button class="btn" style="background: #2ecc71;">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Drug Modal -->
+    <div class="modal" id="drugModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="drugModalTitle">Drug Name</h2>
+            <div class="form-group">
+                <label for="patientWeight">Patient Weight (kg)</label>
+                <input type="number" class="form-control" id="patientWeight" placeholder="Enter weight in kg">
+            </div>
+            <div class="form-group">
+                <label for="patientWeightLbs">Patient Weight (lbs)</label>
+                <input type="number" class="form-control" id="patientWeightLbs" placeholder="Enter weight in lbs">
+            </div>
+            <div class="drug-info">
+                <h3>Dosing Information</h3>
+                <div class="form-group">
+                    <label>Dose Range</label>
+                    <p id="doseRange">0.01 - 0.1 mg/kg</p>
+                </div>
+                <div class="form-group">
+                    <label>Selected Dose</label>
+                    <input type="range" class="form-control" id="doseSlider" min="0" max="100" value="50">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span id="minDose">0.01 mg/kg</span>
+                        <span id="selectedDose">0.05 mg/kg</span>
+                        <span id="maxDose">0.1 mg/kg</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Calculated Dose</label>
+                    <p id="calculatedDose">0.25 mg</p>
+                </div>
+                <div class="form-group">
+                    <label>Concentration</label>
+                    <select class="form-control" id="concentration">
+                        <option value="1">1 mg/ml</option>
+                        <option value="10">10 mg/ml</option>
+                        <option value="100">100 mg/ml</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Volume to Administer</label>
+                    <p id="volumeToAdmin">0.25 ml</p>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn" style="flex: 1;">Save to Patient</button>
+                <button class="btn" style="flex: 1;">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content settings-modal">
+            <span class="close-modal">&times;</span>
+            <h2>Settings</h2>
+            <div class="settings-tabs">
+                <div class="settings-tab active" data-tab="appearance">Appearance</div>
+                <div class="settings-tab" data-tab="general">General</div>
+                <div class="settings-tab" data-tab="drugs">My Drugs</div>
+                <div class="settings-tab" data-tab="links">My Links</div>
+            </div>
+            <div class="settings-content active" id="appearance-content">
+                <div class="form-group">
+                    <label>Theme</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <button class="btn active">Light</button>
+                        <button class="btn btn-outline">Dark</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Primary Color</label>
+                    <div class="color-options">
+                        <div class="color-option blue active"></div>
+                        <div class="color-option green"></div>
+                        <div class="color-option purple"></div>
+                        <div class="color-option red"></div>
+                        <div class="color-option orange"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Toolbar Position</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <button class="btn active">Floating</button>
+                        <button class="btn btn-outline">Fixed</button>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-content" id="general-content">
+                <div class="form-group">
+                    <label>Units</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <button class="btn active">Metric (kg)</button>
+                        <button class="btn btn-outline">Imperial (lbs)</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" id="hidePounds" checked>
+                        <label for="hidePounds" style="margin-left: 0.5rem; margin-bottom: 0;">Hide pounds input (International users)</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Font Size</label>
+                    <select class="form-control">
+                        <option>Small</option>
+                        <option selected>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings-content" id="drugs-content">
+                <p>Add, remove, or reorder your drugs here.</p>
+                <button class="btn" style="margin-top: 1rem;"><i class="fas fa-plus"></i> Add Custom Drug</button>
+                <div style="margin-top: 1.5rem;">
+                    <h4>My Emergency Drugs</h4>
+                    <ul style="margin-top: 0.5rem; border: 1px solid #eee; border-radius: var(--border-radius);">
+                        <li style="padding: 0.8rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
+                            <span>Epinephrine</span>
+                            <div>
+                                <i class="fas fa-arrow-up" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-arrow-down" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-times" style="cursor: pointer; color: var(--danger-color);"></i>
+                            </div>
+                        </li>
+                        <li style="padding: 0.8rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
+                            <span>Atropine</span>
+                            <div>
+                                <i class="fas fa-arrow-up" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-arrow-down" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-times" style="cursor: pointer; color: var(--danger-color);"></i>
+                            </div>
+                        </li>
+                        <li style="padding: 0.8rem; display: flex; justify-content: space-between;">
+                            <span>Lidocaine</span>
+                            <div>
+                                <i class="fas fa-arrow-up" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-arrow-down" style="cursor: pointer; margin-right: 0.5rem;"></i>
+                                <i class="fas fa-times" style="cursor: pointer; color: var(--danger-color);"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="settings-content" id="links-content">
+                <p>Add, remove, or reorder your favorite links here.</p>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="linkName">Link Name</label>
+                    <input type="text" class="form-control" id="linkName" placeholder="Enter link name">
+                </div>
+                <div class="form-group">
+                    <label for="linkUrl">Link URL</label>
+                    <input type="text" class="form-control" id="linkUrl" placeholder="Enter URL">
+                </div>
+                <button class="btn"><i class="fas fa-plus"></i> Add Link</button>
+            </div>
+            <button class="btn btn-block" style="margin-top: 1.5rem;">Save Settings</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Support</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2025 VetCalcPro.com. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Toggle toolbar menu
+        const toolbarToggle = document.getElementById('toolbarToggle');
+        const toolbarMenu = document.getElementById('toolbarMenu');
+
+        toolbarToggle.addEventListener('click', () => {
+            toolbarMenu.classList.toggle('show');
+        });
+
+        // Modal functionality
+        const calculatorBtn = document.getElementById('calculatorBtn');
+        const calculatorModal = document.getElementById('calculatorModal');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const drugModal = document.getElementById('drugModal');
+        const closeModals = document.querySelectorAll('.close-modal');
+
+        calculatorBtn.addEventListener('click', () => {
+            calculatorModal.style.display = 'block';
+            toolbarMenu.classList.remove('show');
+        });
+
+        settingsBtn.addEventListener('click', () => {
+            settingsModal.style.display = 'block';
+            toolbarMenu.classList.remove('show');
+        });
+
+        // Drug items click handlers
+        const drugItems = document.querySelectorAll('.drug-item');
+        drugItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const drugName = item.getAttribute('data-drug');
+                document.getElementById('drugModalTitle').textContent = drugName.charAt(0).toUpperCase() + drugName.slice(1).replace('-', ' ');
+                drugModal.style.display = 'block';
+            });
+        });
+
+        closeModals.forEach(btn => {
+            btn.addEventListener('click', function() {
+                calculatorModal.style.display = 'none';
+                settingsModal.style.display = 'none';
+                drugModal.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === calculatorModal) {
+                calculatorModal.style.display = 'none';
+            }
+            if (e.target === settingsModal) {
+                settingsModal.style.display = 'none';
+            }
+            if (e.target === drugModal) {
+                drugModal.style.display = 'none';
+            }
+        });
+
+        // Settings tabs
+        const settingsTabs = document.querySelectorAll('.settings-tab');
+        const settingsContents = document.querySelectorAll('.settings-content');
+
+        settingsTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                settingsTabs.forEach(t => t.classList.remove('active'));
+                settingsContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+
+        // Weight conversion
+        const patientWeight = document.getElementById('patientWeight');
+        const patientWeightLbs = document.getElementById('patientWeightLbs');
+
+        patientWeight.addEventListener('input', () => {
+            if (patientWeight.value) {
+                patientWeightLbs.value = (patientWeight.value * 2.20462).toFixed(2);
+                updateDrugCalculations();
+            }
+        });
+
+        patientWeightLbs.addEventListener('input', () => {
+            if (patientWeightLbs.value) {
+                patientWeight.value = (patientWeightLbs.value / 2.20462).toFixed(2);
+                updateDrugCalculations();
+            }
+        });
+
+        // Dose slider
+        const doseSlider = document.getElementById('doseSlider');
+        const selectedDose = document.getElementById('selectedDose');
+        const calculatedDose = document.getElementById('calculatedDose');
+        const volumeToAdmin = document.getElementById('volumeToAdmin');
+        const concentration = document.getElementById('concentration');
+
+        doseSlider.addEventListener('input', updateDrugCalculations);
+        concentration.addEventListener('change', updateDrugCalculations);
+
+        function updateDrugCalculations() {
+            if (!patientWeight.value) return;
+
+            // Get dose range from the displayed text
+            const doseRangeText = document.getElementById('doseRange').textContent;
+            const minDoseText = document.getElementById('minDose').textContent;
+            const maxDoseText = document.getElementById('maxDose').textContent;
+            
+            // Extract numeric values (assuming format like "0.01 mg/kg")
+            const minDoseValue = parseFloat(minDoseText);
+            const maxDoseValue = parseFloat(maxDoseText);
+            
+            // Calculate selected dose based on slider position
+            const sliderPercentage = doseSlider.value / 100;
+            const doseDifference = maxDoseValue - minDoseValue;
+            const selectedDoseValue = (minDoseValue + (doseDifference * sliderPercentage)).toFixed(3);
+            
+            // Update selected dose display
+            selectedDose.textContent = `${selectedDoseValue} mg/kg`;
+            
+            // Calculate total dose based on weight
+            const weightInKg = parseFloat(patientWeight.value);
+            const totalDose = (selectedDoseValue * weightInKg).toFixed(2);
+            calculatedDose.textContent = `${totalDose} mg`;
+            
+            // Calculate volume based on concentration
+            const concentrationValue = parseFloat(concentration.value);
+            const volume = (totalDose / concentrationValue).toFixed(2);
+            volumeToAdmin.textContent = `${volume} ml`;
+        }
+
+        // Initially set calculated values
+        updateDrugCalculations();
+
+        // Dark mode toggle
+        const darkModeBtn = document.querySelector('.settings-tab[data-tab="appearance"] + .settings-content button.btn-outline');
+        const lightModeBtn = document.querySelector('.settings-tab[data-tab="appearance"] + .settings-content button.btn.active');
+
+        darkModeBtn.addEventListener('click', () => {
+            document.body.classList.add('dark-mode');
+            darkModeBtn.classList.add('active');
+            darkModeBtn.classList.remove('btn-outline');
+            lightModeBtn.classList.add('btn-outline');
+            lightModeBtn.classList.remove('active');
+        });
+
+        lightModeBtn.addEventListener('click', () => {
+            document.body.classList.remove('dark-mode');
+            lightModeBtn.classList.add('active');
+            lightModeBtn.classList.remove('btn-outline');
+            darkModeBtn.classList.add('btn-outline');
+            darkModeBtn.classList.remove('active');
+        });
+
+        // Color theme selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all options
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                option.classList.add('active');
+                
+                // Get the color class
+                const colorClass = option.classList[1];
+                
+                // Apply color theme (in a real app, would change CSS variables)
+                // This is simplified for demo purposes
+                if (colorClass === 'blue') {
+                    document.documentElement.style.setProperty('--primary-color', '#3498db');
+                } else if (colorClass === 'green') {
+                    document.documentElement.style.setProperty('--primary-color', '#2ecc71');
+                } else if (colorClass === 'purple') {
+                    document.documentElement.style.setProperty('--primary-color', '#9b59b6');
+                } else if (colorClass === 'red') {
+                    document.documentElement.style.setProperty('--primary-color', '#e74c3c');
+                } else if (colorClass === 'orange') {
+                    document.documentElement.style.setProperty('--primary-color', '#f39c12');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
