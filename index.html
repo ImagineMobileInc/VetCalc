@@ -289,15 +289,18 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
         }
 
         .modal-content {
             background-color: #fff;
-            margin: 10% auto;
+            margin: 5% auto;
             padding: 2rem;
             border-radius: var(--border-radius);
             max-width: 500px;
             width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: var(--shadow);
             position: relative;
         }
@@ -698,7 +701,7 @@
                     </div>
                 </div>
 
-                <!-- Tools Category -->
+                <!-- Clinical Tools Category -->
                 <div class="category-card">
                     <div class="category-header">
                         <span>Clinical Tools</span>
@@ -709,8 +712,116 @@
                             <li><a href="#" class="calculator-item" data-calc="glucose-curve">Blood Glucose Curve</a></li>
                             <li><a href="#" class="calculator-item" data-calc="chocolate-toxicity">Chocolate Toxicity</a></li>
                             <li><a href="#" class="calculator-item" data-calc="transfusion">Blood Transfusion</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="blood-pressure">Blood Pressure</a></li>
                             <li><a href="#" class="calculator-item" data-calc="grimace-scale">Feline Grimace Scale</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Toxicology Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Toxicology</span>
+                        <i class="fas fa-skull-crossbones"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="calculator-item" data-calc="chocolate-toxicity">Chocolate Toxicity</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="rodenticide-toxicity">Rodenticide Toxicity</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="plant-toxicity">Poisonous Plant Lookup</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="xylitol-toxicity">Xylitol Toxicity</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="toxin-guide">Toxin Treatment Guide</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Assessment Tools Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Assessment Tools</span>
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="calculator-item" data-calc="trauma-triage">Trauma Triage</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="glasgow-coma">Modified Glasgow Coma Scale</a></li>
                             <li><a href="#" class="calculator-item" data-calc="cushing-tool">Cushing's Diagnostic Tool</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="pain-scale">Pain Scale</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="bcs-chart">Body Condition Score</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- References Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Veterinary References</span>
+                        <i class="fas fa-book-medical"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="reference-item" data-ref="dailymed">DailyMed Drug Label Search</a></li>
+                            <li><a href="#" class="reference-item" data-ref="iris-stages">IRIS Stages</a></li>
+                            <li><a href="#" class="reference-item" data-ref="lab-values">Normal Lab Values</a></li>
+                            <li><a href="#" class="reference-item" data-ref="heartworm">Heartworm Treatment Protocol</a></li>
+                            <li><a href="#" class="reference-item" data-ref="vaccination">AAHA Vaccination Guidelines</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Patient Management Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Patient Management</span>
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="patient-item" data-patient="treatment-sheet">Patient Treatment Sheet</a></li>
+                            <li><a href="#" class="patient-item" data-patient="calorie-calc">Calorie Requirements</a></li>
+                            <li><a href="#" class="patient-item" data-patient="age-calc">Pet Age Calculator</a></li>
+                            <li><a href="#" class="patient-item" data-patient="due-date">Pregnancy Due Date</a></li>
+                            <li><a href="#" class="patient-item" data-patient="microchip">Microchip Lookup</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Cardiology Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Cardiology</span>
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="reference-item" data-ref="mitral-valve">ACVIM Mitral Valve Disease Guidelines</a></li>
+                            <li><a href="#" class="reference-item" data-ref="cardiomyopathy">ACVIM Feline Cardiomyopathy Guidelines</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="vertebral-heart">Vertebral Heart Score</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="blood-pressure">Blood Pressure</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="murmur-guide">Heart Murmur Guide</a></li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Emergency & CPR Category -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <span>Emergency & CPR</span>
+                        <i class="fas fa-first-aid"></i>
+                    </div>
+                    <div class="category-body">
+                        <ul class="calculator-list">
+                            <li><a href="#" class="reference-item" data-ref="recover">RECOVER Guidelines</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="trauma-triage-1">Trauma Triage Calculator 1</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="trauma-triage-2">Trauma Triage Calculator 2</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="trauma-triage-3">Trauma Triage Calculator 3</a></li>
+                            <li><a href="#" class="calculator-item" data-calc="cpr-drugs">CPR Drug Doses</a></li>
                         </ul>
                         <button class="btn btn-outline btn-block" style="margin-top: 1rem;">View All</button>
                     </div>
@@ -848,6 +959,169 @@
             <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
                 <button class="btn" style="flex: 1;">Save to Patient</button>
                 <button class="btn" style="flex: 1;">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Item Modal -->
+    <div class="modal" id="calculatorItemModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="calculatorItemTitle">Calculator</h2>
+            <div id="calculatorItemContent">
+                <!-- Content will be loaded dynamically based on which calculator is selected -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Blood Glucose Curve Modal -->
+    <div class="modal" id="glucoseCurveModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Blood Glucose Curve Generator</h2>
+            <div class="form-group">
+                <label for="patientName">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" placeholder="Enter patient name">
+            </div>
+            <div class="form-group">
+                <label for="curveDate">Date</label>
+                <input type="date" class="form-control" id="curveDate">
+            </div>
+            <div class="glucose-entries">
+                <h3>Glucose Readings</h3>
+                <div id="glucoseReadings">
+                    <div class="form-group" style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="time" class="form-control" style="flex: 1;">
+                        <input type="number" class="form-control" placeholder="Glucose (mg/dL)" style="flex: 2;">
+                        <button class="btn btn-outline"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="time" class="form-control" style="flex: 1;">
+                        <input type="number" class="form-control" placeholder="Glucose (mg/dL)" style="flex: 2;">
+                        <button class="btn btn-outline"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <button class="btn" style="margin-top: 1rem;"><i class="fas fa-plus"></i> Add Reading</button>
+            </div>
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label for="insulinType">Insulin Type</label>
+                <select class="form-control" id="insulinType">
+                    <option>NPH</option>
+                    <option>Lente</option>
+                    <option>Glargine</option>
+                    <option>Detemir</option>
+                    <option>Regular</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="insulinDose">Insulin Dose (units)</label>
+                <input type="number" class="form-control" id="insulinDose" placeholder="Enter insulin dose">
+            </div>
+            <div class="glucose-chart" style="margin-top: 2rem; background: #f9f9f9; border-radius: var(--border-radius); padding: 1rem; height: 300px; display: flex; justify-content: center; align-items: center;">
+                <p style="color: #999; font-style: italic;">Graph will appear here after adding readings.</p>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn" style="flex: 1;">Generate Curve</button>
+                <button class="btn" style="flex: 1;">Save</button>
+                <button class="btn" style="flex: 1;">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chocolate Toxicity Modal -->
+    <div class="modal" id="chocolateToxicityModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Chocolate Toxicity Calculator</h2>
+            <div class="form-group">
+                <label for="animalType">Animal</label>
+                <select class="form-control" id="animalType">
+                    <option>Dog</option>
+                    <option>Cat</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="toxWeight">Patient Weight (kg)</label>
+                <input type="number" class="form-control" id="toxWeight" placeholder="Enter weight in kg">
+            </div>
+            <div class="form-group">
+                <label for="chocolateType">Type of Chocolate</label>
+                <select class="form-control" id="chocolateType">
+                    <option>White Chocolate</option>
+                    <option>Milk Chocolate</option>
+                    <option>Dark Chocolate</option>
+                    <option>Baking Chocolate</option>
+                    <option>Cocoa Powder</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="chocolateAmount">Amount Ingested (g)</label>
+                <input type="number" class="form-control" id="chocolateAmount" placeholder="Enter amount in grams">
+            </div>
+            <div class="toxicity-result" style="margin-top: 1.5rem; background: #f9f9f9; border-radius: var(--border-radius); padding: 1.5rem;">
+                <h3>Toxicity Assessment</h3>
+                <div style="margin-top: 1rem;">
+                    <p><strong>Methylxanthine Content:</strong> <span id="methylxanthineContent">0</span> mg</p>
+                    <p><strong>Methylxanthine Dose:</strong> <span id="methylxanthineDose">0</span> mg/kg</p>
+                    <p><strong>Risk Level:</strong> <span id="riskLevel" style="font-weight: 700; color: #2ecc71;">No Concern</span></p>
+                    <p style="margin-top: 0.8rem;"><strong>Expected Clinical Signs:</strong></p>
+                    <p id="clinicalSigns">None expected at this dose.</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn btn-block">Calculate and Save Results</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodenticide Toxicity Modal -->
+    <div class="modal" id="rodenticideToxicityModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Rodenticide Toxicity Calculator</h2>
+            <div class="form-group">
+                <label for="rodenticideType">Rodenticide Type</label>
+                <select class="form-control" id="rodenticideType">
+                    <option>Anticoagulant (First Generation)</option>
+                    <option>Anticoagulant (Second Generation)</option>
+                    <option>Bromethalin</option>
+                    <option>Cholecalciferol</option>
+                    <option>Zinc Phosphide</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="animalWeight">Patient Weight (kg)</label>
+                <input type="number" class="form-control" id="animalWeight" placeholder="Enter weight in kg">
+            </div>
+            <div class="form-group">
+                <label for="timeElapsed">Time Since Ingestion</label>
+                <select class="form-control" id="timeElapsed">
+                    <option>Less than 2 hours</option>
+                    <option>2-4 hours</option>
+                    <option>4-8 hours</option>
+                    <option>More than 8 hours</option>
+                    <option>Unknown</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productName">Product Name (if known)</label>
+                <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label for="amountIngested">Estimated Amount Ingested</label>
+                <input type="text" class="form-control" id="amountIngested" placeholder="Enter amount">
+            </div>
+            <div class="toxicity-recommendations" style="margin-top: 1.5rem; background: #f9f9f9; border-radius: var(--border-radius); padding: 1.5rem;">
+                <h3>Treatment Recommendations</h3>
+                <div id="treatmentSteps" style="margin-top: 1rem;">
+                    <p><strong>1. Decontamination:</strong> Induction of emesis is recommended if ingestion occurred within the last 2 hours.</p>
+                    <p><strong>2. Activated Charcoal:</strong> 1-2 g/kg orally.</p>
+                    <p><strong>3. Antidote:</strong> Vitamin K1 at 3-5 mg/kg/day divided BID-QID for 30 days.</p>
+                    <p><strong>4. Monitoring:</strong> PT/aPTT at 48-72 hours post-ingestion and 48-72 hours after discontinuation of Vitamin K1.</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn btn-block">Generate Recommendations</button>
             </div>
         </div>
     </div>
@@ -1026,24 +1300,130 @@
             });
         });
 
+        // Calculator items click handlers
+        const calculatorItems = document.querySelectorAll('.calculator-item');
+        calculatorItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const calcType = item.getAttribute('data-calc');
+                
+                // Open appropriate modal based on calculator type
+                if (calcType === 'glucose-curve') {
+                    document.getElementById('glucoseCurveModal').style.display = 'block';
+                } else if (calcType === 'chocolate-toxicity') {
+                    document.getElementById('chocolateToxicityModal').style.display = 'block';
+                } else if (calcType === 'rodenticide-toxicity') {
+                    document.getElementById('rodenticideToxicityModal').style.display = 'block';
+                } else {
+                    // Generic calculator modal for other types
+                    const calculatorItemModal = document.getElementById('calculatorItemModal');
+                    const calculatorItemTitle = document.getElementById('calculatorItemTitle');
+                    const calculatorItemContent = document.getElementById('calculatorItemContent');
+                    
+                    // Set title based on calculator type
+                    calculatorItemTitle.textContent = calcType
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    
+                    // Set content placeholder
+                    calculatorItemContent.innerHTML = `
+                        <div style="padding: 2rem; text-align: center;">
+                            <p>The ${calculatorItemTitle.textContent} calculator is loading...</p>
+                        </div>
+                    `;
+                    
+                    calculatorItemModal.style.display = 'block';
+                }
+            });
+        });
+
+        // Reference items click handlers
+        const referenceItems = document.querySelectorAll('.reference-item');
+        referenceItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const refType = item.getAttribute('data-ref');
+                
+                // Open reference modal (generic for now)
+                const calculatorItemModal = document.getElementById('calculatorItemModal');
+                const calculatorItemTitle = document.getElementById('calculatorItemTitle');
+                const calculatorItemContent = document.getElementById('calculatorItemContent');
+                
+                // Set title based on reference type
+                calculatorItemTitle.textContent = refType
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+                
+                if (refType === 'recover') {
+                    calculatorItemTitle.textContent = 'RECOVER Guidelines';
+                } else if (refType === 'iris-stages') {
+                    calculatorItemTitle.textContent = 'IRIS Staging Guidelines';
+                } else if (refType === 'mitral-valve') {
+                    calculatorItemTitle.textContent = 'ACVIM Mitral Valve Disease Guidelines';
+                } else if (refType === 'cardiomyopathy') {
+                    calculatorItemTitle.textContent = 'ACVIM Feline Cardiomyopathy Guidelines';
+                }
+                
+                // Set content placeholder
+                calculatorItemContent.innerHTML = `
+                    <div style="padding: 2rem; text-align: center;">
+                        <p>Loading ${calculatorItemTitle.textContent}...</p>
+                    </div>
+                `;
+                
+                calculatorItemModal.style.display = 'block';
+            });
+        });
+
+        // Patient items click handlers
+        const patientItems = document.querySelectorAll('.patient-item');
+        patientItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const patientTool = item.getAttribute('data-patient');
+                
+                // Open patient tool modal (generic for now)
+                const calculatorItemModal = document.getElementById('calculatorItemModal');
+                const calculatorItemTitle = document.getElementById('calculatorItemTitle');
+                const calculatorItemContent = document.getElementById('calculatorItemContent');
+                
+                // Set title based on patient tool type
+                calculatorItemTitle.textContent = patientTool
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+                
+                // Set content placeholder
+                calculatorItemContent.innerHTML = `
+                    <div style="padding: 2rem; text-align: center;">
+                        <p>Loading ${calculatorItemTitle.textContent}...</p>
+                    </div>
+                `;
+                
+                calculatorItemModal.style.display = 'block';
+            });
+        });
+
         closeModals.forEach(btn => {
             btn.addEventListener('click', function() {
-                calculatorModal.style.display = 'none';
-                settingsModal.style.display = 'none';
-                drugModal.style.display = 'none';
+                // Close all modals
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
             });
         });
 
         window.addEventListener('click', (e) => {
-            if (e.target === calculatorModal) {
-                calculatorModal.style.display = 'none';
-            }
-            if (e.target === settingsModal) {
-                settingsModal.style.display = 'none';
-            }
-            if (e.target === drugModal) {
-                drugModal.style.display = 'none';
-            }
+            // Close modal if clicked outside the content
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
         });
 
         // Settings tabs
